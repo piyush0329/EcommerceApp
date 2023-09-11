@@ -1,6 +1,6 @@
 import express from 'express'
 import { isAdmin, requireSignIn } from './../middlewares/authMiddleware.js';
-import { createProductController,deleteProductController,getProductController,getSingleProductController, productPhotoController,updateProductController,productFiltersController } from '../controllers/productController.js';
+import { createProductController, deleteProductController, getProductController, getSingleProductController, productPhotoController, updateProductController, productFiltersController, productCountController, productListController } from '../controllers/productController.js';
 
 import formidable from 'express-formidable';
 const router = express.Router()
@@ -8,28 +8,35 @@ const router = express.Router()
 //routes
 
 //create product
-router.post('/create-product', requireSignIn, isAdmin, formidable(),createProductController)
+router.post('/create-product', requireSignIn, isAdmin, formidable(), createProductController)
 
 //get all product
 
-router.get('/get-product',getProductController)
+router.get('/get-product', getProductController)
 
 //get single product
 
-router.get('/get-product/:slug',getSingleProductController)
+router.get('/get-product/:slug', getSingleProductController)
 
 //get photo
 
-router.get('/product-photo/:pid',productPhotoController)
+router.get('/product-photo/:pid', productPhotoController)
 
 //delete product
-router.delete('/product/:pid',deleteProductController)
+router.delete('/product/:pid', deleteProductController)
 
 //update product
-router.put('/update-product/:pid', requireSignIn, isAdmin, formidable(),updateProductController)
+router.put('/update-product/:pid', requireSignIn, isAdmin, formidable(), updateProductController)
 
 
 //filter product
-router.post('/product-filters',productFiltersController)
+router.post('/product-filters', productFiltersController)
+
+//product count
+router.get('/product-count', productCountController)
+
+//product per page
+router.get('/product-list/:page', productListController)
+
 
 export default router
