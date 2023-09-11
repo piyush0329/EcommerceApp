@@ -125,7 +125,7 @@ useEffect(()=>{
                         <Radio.Group  onChange={(e)=> setRadio(e.target.value)}>
                             {
                                 Prices?.map(p =>(
-                                    <div key={p._id}>
+                                    <div key={p.name}>
                                     <Radio value={p.array}>{p.name}</Radio>
                                     </div>
                                 ))
