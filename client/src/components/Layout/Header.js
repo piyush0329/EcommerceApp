@@ -4,11 +4,14 @@ import { useAuth } from '../context/auth'
 import toast from 'react-hot-toast'
 import SearchInput from '../Form/SearchInput'
 import useCategory from '../../hooks/useCategory'
-
+import { useCart } from '../context/cart'
+import { Badge } from 'antd'
+useCart
 
 const Header = () => {
   const [auth, setAuth] = useAuth()
-const categories = useCategory()
+  const categories = useCategory()
+  const [cart]=useCart()
 
   const handleLogout = () => {
     setAuth({
@@ -39,7 +42,7 @@ const categories = useCategory()
               🛒 Ecommerce App
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <SearchInput/>
+              <SearchInput />
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home
@@ -104,9 +107,11 @@ const categories = useCategory()
                 </>)
               }
               <li className="nav-item">
+                <Badge count={cart?.length} showZero>
                 <NavLink to="/cart" className="nav-link">
-                  Cart (0)
+                  Cart 
                 </NavLink>
+                </Badge>
               </li>
             </ul>
           </div>
