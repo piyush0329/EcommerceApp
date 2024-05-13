@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../../components/context/auth'
 import { Select } from "antd";
 const { Option } = Select;
-import moment from "moment";
+import * as moment from "moment";
 
 const AdminOrders = () => {
 
